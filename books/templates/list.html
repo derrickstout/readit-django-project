@@ -1,0 +1,14 @@
+<html>
+	<head>
+		<title>First Template</title>
+	</head>
+	<body>
+		<h1>Here's the body of my first page template</h1>
+		{% if request.user.is_authenticated %}
+			<p>Hello there {{ request.user.username | title}}</p>
+			<p>You last logged in at {{ request.user.last_login | date:"D d M Y"}}</p>
+		{% else %}
+			<p>You are not logged in</p>
+		{% endif %}
+	</body>
+</html>
