@@ -1,3 +1,7 @@
+<!-- This loads the humanize model, which spells out numbers under 10 -->
+
+{% load humanize %}
+
 <html>
 	<head>
 		<title>First Template</title>
@@ -5,10 +9,23 @@
 	<body>
 		<h1>Here's the body of my first page template</h1>
 		{% if request.user.is_authenticated %}
-			<p>Hello there {{ request.user.username | title}}</p>
-			<p>You last logged in at {{ request.user.last_login | date:"D d M Y"}}</p>
+			<p>Hello there {{ request.user.username|title}}</p>
+			<p>You last logged in at {{ request.user.last_login|date:"D d M Y"}}</p>
 		{% else %}
 			<p>You are not logged in</p>
 		{% endif %}
+
+		<main>
+			<h1>{{ books.count|apnumber|title }} Book{{ books.count|pluralize}}</h1>
+
+			{% for book in books %}
+				<h2>{{ book.title }} by {{ book.list_authors }}</h2>
+				{% if book.is_favorite %}
+					<span class="highlight">Favorite</span>
+				{% endif %}
+				<br />
+				{{ book.review }}
+			{% endfor %}
+		</main>
 	</body>
 </html>

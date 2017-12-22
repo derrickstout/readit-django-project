@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Book
 
 # Create your views here.
 
@@ -6,4 +7,17 @@ from django.shortcuts import render
 # takes request object, returns response object
 # This one returns the username of the logged in user
 def list_books(request):
-	return render(request, "list.html")
+	"""
+	List the books that have reviews
+	"""
+
+	books = Book.objects.exclude(date_reviewed__isnull=True).prefetch_related('authors')
+
+	# Creates a dictionary to pass to render function,
+	# so we can reference this info in our template
+	# Best practice is to name this "context"
+	context = {
+		'books': books,
+	}
+
+	return render(request, "list.html", context)
