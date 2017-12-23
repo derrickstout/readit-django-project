@@ -16,9 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from books.views import list_books
+from books.views import AuthorDetail, AuthorList, BookDetail, list_books
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', list_books, name='books'),
+    # Class-based views need "as_view" method to tell Django
+    # to treat it as a view
+    url(r'^authors/$', AuthorList.as_view(), name='authors'),
+    url(r'^books/(?P<pk>[-\w]+)/$', BookDetail.as_view(), name='book-detail'),
+    url(r'^authors/(?P<pk>[-\w]+)/$', AuthorDetail.as_view(), name='author-detail'),
 ]

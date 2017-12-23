@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>An Author</title>
+	</head>
+	<body>
+		<h1>{{ author.name|title }}</h1>
+		{% for book in author.books.all %}
+			{% if book.review %}
+				<div class="book">
+					<h3>{{ book.title }}</h3>
+	<!-- Only show favorite badge if it actually is favorited -->
+					{% if book.is_favorite %}
+						<p class = "highlight">Favorite</p>
+					{% endif %}
+	<!-- linebreaks filter preserves linebreaks from Django admin -->
+					<p>{{ book.review|linebreaks }}</p>
+				</div>
+			{% endif %}
+		{% endfor %}
+
+	</body>
+</html>
