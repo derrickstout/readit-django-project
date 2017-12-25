@@ -56,7 +56,8 @@ ROOT_URLCONF = 'readit.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # So Django can find directy on any OS
+        'DIRS': [os.path.join(BASE_DIR, 'readit', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
