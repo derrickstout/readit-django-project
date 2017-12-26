@@ -5,7 +5,7 @@
 	{% for book in author.books.all %}
 		{% if book.review %}
 			<div class="book">
-				<h3>{{ book.title }}</h3>
+				<h3><a href="{% url 'book-detail' book.pk %}">{{ book.title }}</a></h3>
 <!-- Only show favorite badge if it actually is favorited -->
 				{% if book.is_favorite %}
 					<p class = "highlight">Favorite</p>

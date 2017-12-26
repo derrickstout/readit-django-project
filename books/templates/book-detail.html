@@ -1,10 +1,11 @@
 <div class="book">
-	<h3>{{ book.title }}</h3>
-	<p>By {% for author in book.authors.all %}{{ author.name }}{% endfor %}</p>
-<!-- 				Only show favorite badge if it actually is favorited -->
+<!-- 	Specify book primary key ".pk" to tell Django which version of page to link to -->
+	<h3><a href="{% url 'book-detail' book.pk %}">{{ book.title }}</a></h3>
+	<p>By {% for author in book.authors.all %}<a href="{% url 'author-detail' author.pk %}">{{ author.name }}</a>{% endfor %}</p>
+<!-- Only show favorite badge if it actually is favorited -->
 	{% if book.is_favorite %}
 		<p class = "highlight">Favorite</p>
 	{% endif %}
-<!-- 				linebreaks filter preserves linebreaks from Django admin -->
+<!-- linebreaks filter preserves linebreaks from Django admin -->
 	<p>{{ book.review|linebreaks }}</p>
 </div>

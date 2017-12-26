@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html>
 	<head>
@@ -5,10 +7,16 @@
 		<meta charset="utf-8">
 		<meta name="description" content="My great book review site">
 		<meta name="viewport" content="Width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:700|Merriweather:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 	</head>
 	<body>
 		<div class="container">
 			<header>
+				<img src="{% static 'img/logo.png' %}" alt="Readit!" class="logo"/>
 				<div class="welcome">
 					{% if request.user.is_authenticated %}
 						<p>Hello there {{ request.user.username|title}}</p>
@@ -18,6 +26,11 @@
 					{% endif %}
 				</div>
 			</header>
+
+			<nav>
+				<a href="{% url 'books' %}">Books</a>
+				<a href="{% url 'authors' %}">Authors</a>
+			</nav>
 
 			<main>
 				{% block content %}{% endblock %}

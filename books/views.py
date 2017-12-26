@@ -49,7 +49,7 @@ class AuthorList(View):
 		return render(request, "authors.html", context)
 
 
-# Generic Class-based Views, sub-classing DetailView
+# Generic Class-based Views, sub-classing DetailView, a built-in model
 class BookDetail(DetailView):
 	model = Book
 	template_name = "book.html"
