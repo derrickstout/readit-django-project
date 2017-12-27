@@ -16,7 +16,9 @@
 	<body>
 		<div class="container">
 			<header>
-				<img src="{% static 'img/logo.png' %}" alt="Readit!" class="logo"/>
+				<a href="{% url 'books' %}">
+					<img src="{% static 'img/logo.png' %}" alt="Readit!" class="logo"/>
+				</a>
 				<div class="welcome">
 					{% if request.user.is_authenticated %}
 						<p>Hello there {{ request.user.username|title}}</p>

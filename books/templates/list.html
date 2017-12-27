@@ -8,7 +8,7 @@ so that the block content replace will work -->
 <!-- This content block replaces the block section of the base.html
 template -->
 {% block content %}
-	<h1>{{ books.count|apnumber|title }} Book{{ books.count|pluralize}}</h1>
+	<h1>{{ books.count|apnumber|title }} Book{{ books.count|pluralize }}</h1>
 
 	{% for book in books %}
 		{% include "book-detail.html" %}
