@@ -18,5 +18,5 @@ class ReviewForm(forms.Form):
 		error_messages={
 			'required': 'This field is required. Please enter a review.',
 			'min_length': 'Minimum review length is 30 characters. You have written %(show_value)s)'
-		}
+			}
 		)

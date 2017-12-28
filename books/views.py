@@ -1,6 +1,6 @@
 # Count lets us count book for each author
 from django.db.models import Count
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 # Import View model so we can sub-class it for class-based views
 # Need to sub-class DetailView for generic class-based views
 from django.views.generic import DetailView, View
@@ -82,7 +82,25 @@ def review_book(request, pk):
 	# This is a shortcut function
 	book = get_object_or_404(Book, pk=pk)
 
-	form = ReviewForm
+	if request.method == 'POST':
+		# process our form (bind request data to form)
+		form = ReviewForm(request.POST)
+
+		# checking validity with built in is_valid method
+		# save the info and redirect to review_books view
+		if form.is_valid():
+			# setting object values from form data
+			book.is_favorite = form.cleaned_data['is_favorite']
+			book.review = form.cleaned_data['review']
+			book.save()
+
+			# redirect users to page by name
+			# redirect is a shortcut, must be imported from Django
+			return redirect('review-books')
+
+	else:
+		# render empty form
+		form = ReviewForm
 	
 	context = {
 		'book': book,
