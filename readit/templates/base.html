@@ -26,12 +26,14 @@
 					{% else %}
 						<p>You are not logged in</p>
 					{% endif %}
+					<a href="{% url 'review-books' %}">Add a Book</a>
 				</div>
 			</header>
 
 			<nav>
 				<a href="{% url 'books' %}">Books</a>
 				<a href="{% url 'authors' %}">Authors</a>
+
 			</nav>
 
 			<main>
