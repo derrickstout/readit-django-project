@@ -1,4 +1,5 @@
 from django import forms
+from .models import Book
 
 class ReviewForm(forms.Form):
 	"""
@@ -20,3 +21,9 @@ class ReviewForm(forms.Form):
 			'min_length': 'Minimum review length is 30 characters. You have written %(show_value)s)'
 			}
 		)
+
+# A ModelForm directly maps to the fields of a model
+class BookForm(forms.ModelForm):
+	class Meta:
+		model = Book
+		fields = ['title', 'authors']
