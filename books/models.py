@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.timezone import now
 
@@ -28,3 +29,8 @@ class Author(models.Model):
 
 	def __str__(self):
 		return self.name
+
+	# Getting the absolute URL is necessary for the form to add new authors to work
+	def get_absolute_url(self):
+		# reverse function takes URL name and returns URL
+		return reverse('author-detail', kwargs={'pk', self.pk})

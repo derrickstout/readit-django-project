@@ -1,9 +1,12 @@
+from django.core.urlresolvers import reverse
 # Count lets us count book for each author
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 # Import View model so we can sub-class it for class-based views
 # Need to sub-class DetailView for generic class-based views
 from django.views.generic import DetailView, View
+# importing to subclass for CreateAuthor page
+from django.views.generic.edit import CreateView
 # Import Classes from forms.py
 from .forms import BookForm, ReviewForm
 from .models import Author, Book
@@ -127,3 +130,18 @@ def review_book(request, pk):
 	}
 	
 	return render(request, "review-book.html", context)
+
+class CreateAuthor(CreateView):
+	model = Author
+	fields = ['name',]
+	template_name = "create-author.html"
+
+	def get_success_url(self):
+		return reverse('review-books')
+
+
+
+
+
+
+
