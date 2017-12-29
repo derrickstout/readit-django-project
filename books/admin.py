@@ -8,7 +8,7 @@ from .models import Author, Book
 class BookAdmin(admin.ModelAdmin):
 	fieldsets = [
 		("Book Details", {"fields": ["title", "authors"]}),
-		("Review", {"fields": ["is_favorite", "review", "date_reviewed"]}),
+		("Review", {"fields": ["is_favorite", "review", "reviewed_by", "date_reviewed"]}),
 	]
 
 	readonly_fields = ("date_reviewed",)
@@ -23,7 +23,7 @@ class BookAdmin(admin.ModelAdmin):
 	book_authors.short_description = "Author(s)"
 
 	#The list_display property contains columns we see in the book list page
-	list_display = ("title", "book_authors", "date_reviewed", "is_favorite",)
+	list_display = ("title", "book_authors","reviewed_by", "date_reviewed", "is_favorite",)
 
 	# This allows you to edit the fields specified in the book list page
 	list_editable = ("is_favorite",)

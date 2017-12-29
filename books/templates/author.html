@@ -12,6 +12,13 @@
 				{% endif %}
 <!-- linebreaks filter preserves linebreaks from Django admin -->
 				<p>{{ book.review|linebreaks }}</p>
+				<p class="meta">
+					Reviewed on <strong>{{ book.date_reviewed|date:"D d M Y"}}</strong>
+					{% if book.reviewed_by %}
+						<!-- get_full_name is a built in method from the User model -->
+						by <strong>{{ book.reviewed_by.get_full_name|default:book.reviewed_by.username }}
+					{% endif %}
+				</p>
 			</div>
 		{% endif %}
 	{% endfor %}

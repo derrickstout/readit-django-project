@@ -114,6 +114,9 @@ def review_book(request, pk):
 			# setting object values from form data
 			book.is_favorite = form.cleaned_data['is_favorite']
 			book.review = form.cleaned_data['review']
+			# Set this field to be the logged in user, so if logged in user submits
+			# a review that was assigned to someone else, field updates correctly
+			book.reviewed_by = request.user
 			book.save()
 
 			# redirect users to page by name

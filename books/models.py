@@ -1,3 +1,5 @@
+# importing user object to add user data to models (reviewed by)
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.timezone import now
@@ -8,6 +10,8 @@ class Book(models.Model):
 	title = models.CharField(max_length=150)
 	authors = models.ManyToManyField("Author", related_name="books")
 	review = models.TextField(blank=True, null=True)
+	#like ManyToMany, first argument is model we want to create a relationship with
+	reviewed_by = models.ForeignKey(User, blank=True, null=True, related_name="reviews")
 	date_reviewed = models.DateTimeField(blank=True, null=True)
 	is_favorite = models.BooleanField(default=False, verbose_name="Favorite?")
 
