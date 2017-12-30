@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        <label>{{ form.username.label }}</label>
+        {{ form.username }}
+
+        <label>{{ form.password.label }}</label>
+        {{ form.password }}
+
+        {% if form.errors %}
+            <div class="form-error">
+                <span>Your username and password didn't match. Please try again.</span>
+            </div>
+        {% endif %}
+        <!-- Rather than defaulting to the accounts/profile page after login, this
+        hidden field allows you to define the next template to go to -->
+        <input type="hidden" name="next" value="{% url 'review-books' %}" />
+        <input type="submit" value="login" />
+    </form>
+{% endblock %}

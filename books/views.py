@@ -1,3 +1,5 @@
+# Adds ability to restrict user access to certain views
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 # Count lets us count book for each author
 from django.db.models import Count
@@ -96,7 +98,8 @@ class ReviewList(View):
 
 	
 # Functional view using forms
-
+# This decorator wraps the functional view in a function requiring users to be logged in
+@login_required
 def review_book(request, pk):
 	"""
 	Review an individual book
