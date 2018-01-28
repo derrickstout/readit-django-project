@@ -42,7 +42,7 @@ class AuthorList(View):
 	def get(self, request):
 
 		# .annotate temporarily stores # of books per author
-		# for lifespan of quesry set
+		# for lifespan of query set
 		authors = Author.objects.annotate(
 			published_books = Count('books')
 		).filter(
