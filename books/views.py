@@ -38,7 +38,7 @@ def list_books(request):
 # Class-based view
 class AuthorList(View):
 # get method tells Django how to handle HTTP get requests
-# takes request, returns response, like funcitonal view
+# takes request, returns response, like functional view
 	def get(self, request):
 
 		# .annotate temporarily stores # of books per author
